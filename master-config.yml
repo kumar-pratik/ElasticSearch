@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: master-config
+data:
+  elasticsearch.yml: |-
+    cluster.name: "my-es-cluster"
+    node.master: "true"
+    node.data: "false"
+    node.ingest: "false"
+    node.name: ${HOSTNAME}
+    network.host: "_site_"
+    path.data: "/data/data/"
+    path.logs: "/data/log/"
+    discovery.seed_hosts: master-headless
+    cluster.initial_master_nodes: 
+    - master-0
+    - master-1
+    - master-2
